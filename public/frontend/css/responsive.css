@@ -1,0 +1,44 @@
+/*  
+    -- Breakpoints --
+    # Small devices (landscape phones, 576px and down)
+    @media (max-width: 480px) {}
+
+    # Small devices (landscape phones, 576px and down)
+    @media (max-width: 575px) {}
+
+    # Medium devices (tablets, 768px and down)
+    @media (max-width: 767px) {}
+
+    # Large devices (desktops, 992px and down)
+    @media (max-width: 991px) {}
+
+    # Extra large devices (large desktops, 1200px and down)
+    @media (max-width: 1200px) {} 
+*/
+
+@media all and (max-width: 991px) {
+    .navbar .navbar-toggler {
+        display: none !important;
+    }
+    .header .form-control {
+        width: 85%;
+    }
+    .header form button {
+        left: 10%;
+    }
+    .navbar .logo {
+        display: inline;
+    }
+    /*
+    #wrapper.toggled #sidebar-wrapper {
+        margin-right: -15rem;
+    }
+     #sidebar-wrapper .list-group {
+        width: 100%;
+        flex-direction: row;
+        position: relative;
+        top: 0;
+        left: 0 !important;
+        z-index: 1111 !important;
+    } */
+}

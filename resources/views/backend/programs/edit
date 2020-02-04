@@ -1,0 +1,36 @@
+
+<div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title pull-right" id="myModalLabel">تعديل البرنامج</h4>
+      </div>
+      <div class="modal-body" dir="rtl" >
+	<form method="post" id="formEdit" enctype="multipart/form-data">
+		@csrf
+	 <label style="float:right">اسم البرنامج</label>
+		<input type="text" name="name" id="nameEdit" class="form-control">
+	<label style="float:right">اسم الخدمه</label>
+		<select name="service_id"  class="col-md-12"  id="service_idEdit">
+			<option ></option>
+		@foreach($services as $serv)
+			<option value="{{$serv->id}}">{{$serv->name}}</option>
+			@endforeach
+		
+		</select>
+	<label style="float:right" >وصف البرنامج</label>
+		<textarea type="text" name="description"
+		id="descriptionEdit" class="form-control" rows="8" cols="20"></textarea>
+	<label style="float:right">صوره البرنامج</label>
+		  <br>
+		  <br>
+	  <img src="" name=image id="imageEdit" width="120px" height="100px"style="float:right">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal"style="float:right">اغلاق</button>
+       <button class="btn btn-info " id="" >Edit</button>
+      </div>
+    </div>
+  </div>
+</div>
