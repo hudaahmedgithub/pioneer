@@ -5,30 +5,52 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Program;
 use App\Service;
+use App\Phone;
+use App\Country;
 class ProgramController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function index()
     {
         $programs = Program::all();
 		$services=Service::all();
 		return view('frontend.programs.index',compact('programs','services'));
     }
-   public function progDetails($id)
+	public function programsExp()
 	{
-		$programs=Program::where('service_id',$id)->get();
-		
-		return view('frontend.programs.progDetails',compact('programs'));
+		$programs = Program::all();
+		$services=Service::all();
+		$countries =Country::all();
+		return view('frontend.programs.programsExp',compact('programs','services','countries'));
 	}
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   public function programDetails($id)
+	{
+		$program=Program::findOrFail($id);
+	    $phones=Phone::all();
+	    $countries =Country::all();
+		if($program->id==97)
+		{
+		return view('frontend.programs.program1',compact('phones','countries'));	
+		}
+		if($program->id==98)
+		{
+		return view('frontend.programs.program2',compact('phones','countries'));	
+		}
+		if($program->id==99)
+		{
+		return view('frontend.programs.program3',compact('phones','countries'));	
+		}
+		if($program->id==100)
+		{
+		return view('frontend.programs.program4',compact('phones','countries'));	
+		}
+	   if($program->id==102)
+		{
+		return view('frontend.programs.program4',compact('phones','countries'));	
+		}
+		
+	}
+    
     public function create()
     {
         //

@@ -22,7 +22,19 @@ Route::resource('/offers','OffersController');
 
 Route::get('/about','HomeController@about');
 
-Route::get('/progDetails/{id}','ProgramController@progDetails')->name('progDetails');
+Route::get('/map','HomeController@map');
+
+Route::get('/serviceDetails/{id}','ServiceController@servDetails')->name('serviceDetails');
+
+Route::get('/programsExp','ProgramController@programsExp');
+
+Route::get('/clients','HomeController@clients');
+
+Route::post('/getSearchP','HomeController@getSearchP')->name('getSearchP');
+Route::post('/getSearch','HomeController@getSearch')->name('getSearch');
+
+Route::get('/programDetails/{id}','ProgramController@programDetails')->name('programDetails');
+
 
 //Route::get('/progDetails/{id}','ServiceController@progDetails')->name('progDetails');
 ////////////////contact//////////////////

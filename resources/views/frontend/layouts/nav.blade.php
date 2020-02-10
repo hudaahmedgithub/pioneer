@@ -24,10 +24,10 @@
                             <a class="nav-link" href="{{route('program.index')}}">البرامج</a>
                         </li>
                         <li>
-                            <a class="nav-link" href="{{url('progDetails')}}" >شرح البرامج</a>
+                            <a class="nav-link" href="{{url('programsExp')}}" >شرح البرامج</a>
                         </li>
                         <li>
-                            <a class="nav-link" href="ourClients.html" >عملائنا</a>
+                            <a class="nav-link" href="{{url('/clients')}}" >عملائنا</a>
                         </li>
                         <li>
                             <a class="nav-link" href="{{route('offers.index')}}" >العروض</a>
@@ -39,16 +39,18 @@
                             <a class="nav-link" href="{{url('contact')}}" >تواصل معنا</a>
                         </li>
                         <li>
-                            <a class="nav-link" href="pageMap.html" >خريطة الموقع</a>
+                            <a class="nav-link" href="{{url('/map')}}" >خريطة الموقع</a>
                         </li>
                     </ul>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left:-40px">
                         <ul class="navbar-nav ml-auto" >
                             <li class="nav-item">
-                                <form action="" class="search-form">
-                                    <input type="text" class="form-control search" placeholder="بحث">
-                                    <i class="fas fa-search"></i>
-                                </form>
+                                <form class="form-inline search-container ml-auto my-2 my-lg-0" id="searchAll">
+               
+                <input class="form-control mr-sm-2 search-in" type="search" placeholder="Search" aria-label="Search" id="search">
+                <button class="btn btn-primary my-2 my-sm-0 search-btn" type="submit">search</button>
+             
+       </form>
                             </li>
                         </ul>
                     </div>
@@ -65,13 +67,15 @@
 					       
 							<h3>{{$slider->title_slider}}</h3>
 							<h6>{{$slider->description}}</h6>
-                            <form action="">
-                                <input type="text" class="form-control" placeholder="ابحث الآن عن اي مشروع تريده ..">
-                                <button type="submit" class="btn btn-danger btn-rounded">ابحث الآن</button>
-                            </form>
+                     <form class="form-inline search-container ml-auto my-2 my-lg-0" id="searchProgram" >
+               
+                   <input class="form-control mr-sm-2 search-in" type="search" placeholder="Search" aria-label="Search" id="searchP" >
+                   <button class="btn btn-danger my-4 my-sm-0 search-btn" type="submit" style="margint-left:-200px">search</button>
+             
+       </form>
                         </div>
                     </div>
                 </section>
                 <!-- End Header -->
 
-                            
+                   

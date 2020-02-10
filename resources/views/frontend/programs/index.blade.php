@@ -1,24 +1,22 @@
 @extends('frontend.layouts.main')
 @section('content')
-                <!-- Main Content -->
- <!------------------------ Start Page Content ------------------------->
-                  <div class="container">
+      <div class="container">
                     <div class="programs-content">
                         <h2>برامجنا</h2>
                         <div class="row">
-							@foreach($programs as $prog)
+							@foreach($programs as $p)
                             <div class="col-md-6 col-xs-12">
                                 <div class="card mb-5">
-                                    <img src="{{url('uploads/program_images',$prog->image)}}"/>
+                                    <img src="{{url('uploads/program_images',$p->image)}}" />
                                     <div class="card-body">
-                                        <h3>{{$prog->name}}</h3>
-                                        <span><a href="{{url('/contact')}}">اطلب الآن <i class="fas fa-shopping-cart"></i></a></span>
+                                        <h3>{{$p->name}} </h3>
+                                        <span><a href="{{route('programDetails',$p->id)}}">اطلب الآن <i class="fas fa-shopping-cart"></i></a></span>
                                     </div>
                                 </div>
                             </div>
-                          @endforeach
-                        </div>
-                    </div>
-                </div>
-                <!------------------------ End Page Content ------------------------->
+							@endforeach
+						</div>
+		  </div>
+</div>
+
 @endsection

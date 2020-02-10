@@ -1,21 +1,16 @@
-@extends('frontend.layouts.main')
-@section('content')
-                <!-- Main Content -->
-
-                <div class="container">
-                    <div class="exp-content">
-						
+ <div id="searchPrograms">
+                    <div class="exp-content" >
                         <h2>شرح البرامج</h2>
-                        @foreach($programs as $prog)
+						@foreach($programs as $p)
+                        <h3>{{$p->name}}</h3>
                         <div class="row">
-							<h3>{{$pro->name}}</h3>
                             <div class="col-md-6">
-                                <img src="{{url('frontend/imgs',$prog->image)}}" alt="program1">
+                                <img src="{{asset('frontend/imgs/austin-distel-jpHw8ndwJ_Q-unsplash.jpg')}}" alt="program1">
                             </div>
                             <div class="col-md-6">
-								<p>{{$prog->description}}</p>
+                                <p>{{$p->description}}</p>
                                 <button><a href="#">التفاصيل .. </a></button>
-                                <button><a href="#">اطلب الآن</a></button>
+                                <button><a href="{{url('/contact')}}">اطلب الآن</a></button>
                             </div>
                         </div>
 
@@ -25,9 +20,6 @@
                             <span></span>
                         </div>
                         <!-- ./HR -->
-
-                       
-                    </div>
-                </div>
-                <!------------------------ End Page Content ------------------------->
-@endsection
+@endforeach
+					</div>
+</div>

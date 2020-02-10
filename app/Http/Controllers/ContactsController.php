@@ -40,7 +40,7 @@ class ContactsController extends Controller
             Mail::send('frontend.contact.emails.enquiry',$messageData,
                       function($message)use($email)
                        {
-                           $message->to($email)->subject('Enquiry from E-com');
+                           $message->to($email)->subject('Enquiry from E-labto');
                        });
 	   
             return redirect()->back()->with('flash_message_success','Thank you for your enquiry, we will get back soon.');

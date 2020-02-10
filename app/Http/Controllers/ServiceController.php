@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Service;
 use App\Program;
 use Illuminate\Http\Request;
-
+use App\Phone;
+use App\Country;
 class ServiceController extends Controller
 {
     /**
@@ -19,7 +20,29 @@ class ServiceController extends Controller
 		return view('frontend.services.index',compact('services'));
 		
     }
-	
+	public function servDetails($id)
+	{
+		$service=Service::find($id);
+	    $phones=Phone::all();
+		 $countries =Country::all();
+		if($service->id==3)
+		{
+		return view('frontend.services.serv_web',compact('phones','countries'));	
+		}
+		if($service->id==4)
+		{
+		return view('frontend.services.serv_host',compact('phones','countries'));	
+		}
+		if($service->id==5)
+		{
+		return view('frontend.services.serv_market',compact('phones','countries'));	
+		}
+		if($service->id==6)
+		{
+		return view('frontend.services.serv_mobile',compact('phones','countries'));	
+		}
+		
+	}
     /**
      * Show the form for creating a new resource.
      *
