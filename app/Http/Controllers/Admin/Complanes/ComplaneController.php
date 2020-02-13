@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Program;
 use App\Complane;
 use File;
+
 use Validator,Redirect,Response;
 class ComplaneController extends Controller
 {
@@ -26,6 +27,16 @@ class ComplaneController extends Controller
 		$complanes=Complane::where('active','yes')->get();
 		return  response()->json(['data'=>$complanes]);
 		
+	}
+	public function searchComplane(Request $request)
+	{
+	if($request->ajax())
+		{
+		$data=Complane::where('name','like','%'. $request->search .'%')->orWhere('description','like','%'. $request->search .'%' )
+        ->firstOrFail();
+		$complanes=Complane::where('id',$data->id)->get();
+		 return response()->json(['complanes'=>$complanes]);
+		}
 	}
 	public function show($id)
 	{

@@ -28,6 +28,16 @@ class jobController extends Controller
 		return  response()->json(['data'=>$jobs]);
 		
 	}
+	public function searchJob(Request $request)
+	{
+	if($request->ajax())
+		{
+		$data=Job::where('name','like','%'. $request->search .'%')->orWhere('description','like','%'. $request->search .'%' )
+        ->firstOrFail();
+		$jobs=Job::where('id',$data->id)->get();
+		 return response()->json(['jobs'=>$jobs]);
+		}
+	}
 	public function show($id)
 	{
 		$data=Job::where('id',$id)->firstOrFail();

@@ -56,6 +56,14 @@
         </a>
       
       </li>
+		<li class="nav-item">
+        <a class="nav-link" href="{{url('admin/activites/index')}}" >
+          <i class="fas fa-fw fa-cog"style="float:right" ></i>
+          <span style="float:right;color:#fff;font-size:20px"> انشطه الموقع</span>
+        </a>
+      
+      </li>
+		
 <li class="nav-item">
         <a class="nav-link" href="{{url('admin/complanes/index')}}" >
           <i class="fas fa-fw fa-cog"style="float:right" ></i>

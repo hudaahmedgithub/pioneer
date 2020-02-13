@@ -31,6 +31,7 @@ Route::get('/programsExp','ProgramController@programsExp');
 Route::get('/clients','HomeController@clients');
 
 Route::post('/getSearchP','HomeController@getSearchP')->name('getSearchP');
+
 Route::post('/getSearch','HomeController@getSearch')->name('getSearch');
 
 Route::get('/programDetails/{id}','ProgramController@programDetails')->name('programDetails');
@@ -66,6 +67,10 @@ Route::post('admin/programs/store','admin\Programs\ProgramController@store');
  
 Route::post('admin/programs/update/{id}','admin\Programs\ProgramController@update');
 
+Route::post('/admin/programs/searchProgram','admin\Programs\ProgramController@searchProgram');
+
+Route::post('/admin/programs/search','admin\Programs\ProgramController@search')->name('search');
+
 ////////////////services//////////////////
 
 Route::get('admin/services/index','admin\Services\ServiceController@index');
@@ -80,6 +85,7 @@ Route::post('admin/services/store','admin\Services\ServiceController@store');
  
 Route::post('admin/services/update/{id}','admin\Services\ServiceController@update');
 
+Route::post('admin/services/searchService','admin\Services\ServiceController@searchService');
 ///////////////////complanes//////////////////
 
 Route::get('admin/complanes/index','admin\Complanes\ComplaneController@index');
@@ -94,6 +100,10 @@ Route::post('admin/complanes/store','admin\Complanes\ComplaneController@store');
  
 Route::post('admin/complanes/update/{id}','admin\Complanes\ComplaneController@update');
 
+Route::post('admin/complanes/searchComplane','admin\Complanes\ComplaneController@searchComplane');
+ 
+
+ 
 /////////////offers//////////////
 
 Route::get('admin/offers/index','admin\Offers\OfferController@index');
@@ -107,6 +117,7 @@ Route::get('admin/offers/show/{id}', 'admin\Offers\OfferController@show');
 Route::post('admin/offers/store','admin\Offers\OfferController@store');
  
 Route::post('admin/offers/update/{id}','admin\Offers\OfferController@update');
+Route::post('admin/offers/searchOffer','admin\Offers\OfferController@searchOffer');
 //////////////////jobs/////////////////
 Route::get('admin/jobs/index','admin\Jobs\JobController@index');
 
@@ -119,6 +130,8 @@ Route::get('admin/jobs/show/{id}', 'admin\Jobs\JobController@show');
 Route::post('admin/jobs/store','admin\Jobs\JobController@store');
  
 Route::post('admin/jobs/update/{id}','admin\Jobs\JobController@update');
+
+Route::post('admin/jobs/searchJob','admin\Jobs\JobController@searchJob');
 ///////////////////phone///////////////
 
 Route::get('admin/phones/index','admin\Phones\PhoneController@index');
@@ -132,6 +145,7 @@ Route::get('admin/phones/show/{id}', 'admin\Phones\PhoneController@show');
 Route::post('admin/phones/store','admin\Phones\PhoneController@store');
  
 Route::post('admin/phones/update/{id}','admin\Phones\PhoneController@update');
+
 ////////////////activites//////////////////////////
 
 Route::get('admin/activites/index','admin\Activites\ActivityController@index');
@@ -143,6 +157,8 @@ Route::post('admin/activites/destroy','admin\Activites\ActivityController@destro
 Route::get('admin/activites/show/{id}', 'admin\Activites\ActivityController@show');
 
 Route::post('admin/activites/store','admin\Activites\ActivityController@store');
+
+Route::post('admin/activites/searchActive','admin\Activites\ActivityController@searchActive');
  ////////////////experiencs///////////////////////////////
 
 Route::get('admin/experiences/index','admin\Experiences\ExperienceController@index');
@@ -155,6 +171,8 @@ Route::get('admin/experiences/show/{id}', 'admin\Experiences\ExperienceControlle
 
 Route::post('admin/experiences/store','admin\Experiences\ExperienceController@store');
 Route::post('admin/experiences/update/{id}','admin\Experiences\ExperienceController@update');
+
+Route::post('admin/experiences/searchExper','admin\Experiences\ExperienceController@searchExper');
 /////////////////////////////contacts/////////////////
 
 Route::get('admin/contacts/index','admin\Contacts\ContactController@index');

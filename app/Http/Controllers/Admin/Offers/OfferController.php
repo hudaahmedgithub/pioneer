@@ -28,6 +28,16 @@ class OfferController extends Controller
 		return  response()->json(['data'=>$offers]);
 		
 	}
+	public function searchOffer(Request $request)
+	{
+	if($request->ajax())
+		{
+		$data=Offer::where('name','like','%'. $request->search .'%')->orWhere('description','like','%'. $request->search .'%' )
+        ->firstOrFail();
+		$offers=Offer::where('id',$data->id)->get();
+		 return response()->json(['offers'=>$offers]);
+		}
+	}
 	public function show($id)
 	{
 		$data=Offer::where('id',$id)->firstOrFail();

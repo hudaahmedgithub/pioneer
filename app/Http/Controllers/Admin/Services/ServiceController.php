@@ -27,6 +27,16 @@ class ServiceController extends Controller
 		return  response()->json(['data'=>$services]);
 		
 	}
+	public function searchService(Request $request)
+	{
+	if($request->ajax())
+		{
+		$data=Service::where('name','like','%'. $request->search .'%')->orWhere('description','like','%'. $request->search .'%' )
+        ->firstOrFail();
+		$services=Service::where('id',$data->id)->get();
+		 return response()->json(['services'=>$services]);
+		}
+	}
 	public function show($id)
 	{
 		$data=Service::where('id',$id)->firstOrFail();

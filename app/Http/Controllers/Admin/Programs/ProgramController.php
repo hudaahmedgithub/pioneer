@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Program;
 use App\Service;
 use File;
+use DB;
 use Validator,Redirect,Response;
 class ProgramController extends Controller
 {
@@ -26,6 +27,67 @@ class ProgramController extends Controller
 	{
 		$programs=Program::where('active','yes')->get();
 		return  response()->json(['data'=>$programs]);	
+	}
+	public function search(Request $request)
+	{
+	if($request->ajax())
+	{
+      $output = '';
+      $query = $request->get('search');
+      if($query != '')
+      {
+       $data = DB::table('programs')
+         ->where('name', 'like', '%'.$query.'%')
+         ->orWhere('description', 'like', '%'.$query.'%')
+         ->orderBy('id', 'desc')
+         ->get();
+         
+      }
+      else
+      {
+       $data = DB::table('programs')
+         ->orderBy('id', 'desc')
+         ->get();
+      }
+      $total_row = $data->count();
+      if($total_row > 0)
+      {
+       foreach($data as $row)
+       {
+        $output .= '
+        <tr>
+         <td>'.$row->name.'</td>
+         <td>'.$row->description.'</td>
+        </tr>
+        ';
+       }
+      }
+      else
+      {
+       $output = '
+       <tr>
+        <td align="center" colspan="5">No Data Found</td>
+       </tr>
+       ';
+      }
+      $data = array(
+       'table_data'  => $output,
+       'total_data'  => $total_row
+      );
+
+      echo json_encode($data);
+     }
+}
+	
+	public function searchProgram(Request $request)
+	{
+	if($request->ajax())
+		{
+		$data=Program::where('name','like','%'. $request->search .'%')->orWhere('description','like','%'. $request->search .'%' )
+        ->firstOrFail();
+		$programs=Program::where('id',$data->id)->get();
+		 return response()->json(['programs'=>$programs]);
+		}
 	}
 	public function show($id)
 	{

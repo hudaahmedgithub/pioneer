@@ -21,7 +21,12 @@
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary" style="float:right">الشكوى</h6>
-				  
+				 <form class="form-inline search-container ml-auto my-2 my-lg-0" id="searchComplane" >
+               
+                   <input class="form-control mr-sm-2 search-in" type="search" placeholder="Search" aria-label="Search" id="search" >
+                   <button class="btn btn-danger my-4 my-sm-0 search-btn" type="submit" style="margint-left:-200px">search</button>
+             
+       </form>   
             </div>
             <div class="card-body" >
               <div class="table-responsive">
@@ -258,49 +263,37 @@ $('#formEdit').on('submit', function(e) {
     }
 	});
   });
-/*$('#formComplan').on('submit', function(e) {
-        e.preventDefault();
-	
-        let url         = "{{ url('/') }}/admin/complanes/store";
-        name=$('#nameComplan').val();
-	    description=$('#descriptionComplan').val();
-	   
-	    image =$('#image').val() ;
-	    var data=new FormData($('#formComplan')[0]);
-	$.ajax({
-    url : url,
-    type: "POST",
-    data : data,
-    processData: false,
-    contentType: false,
-    success:function(data){
-    
-		$('#nameComplan').val('');
-        $('#descriptionComplan').val('');
-       
-        $('#image').val('');
-		
-		  $('#tableComplan').append("<tr>"+
-							   "<td >"+data.store.id+"</td>"
-							   +"<td id='ename'>"+data.store.name+"</td>"
-							   +"<td id='edescription'>"+data.store.description+"</td>"
-							   +"<td >"+'<img src="{{asset('uploads/complane_images')}}/'+data.store.image+'" width="100" height="100" data-photo='+data.store.image+' id="eimage">'+
+$('#searchComplane').submit(function(e){
+	e.preventDefault();
+search=$('#search').val();
+console.log(search);
+let action  = "{{ url('/') }}/admin/complanes/searchComplane";
+$.post(action,{search:search},function(data){
+	console.log(data.complanes);
+	$('#tableComplan').html('');
+	$.each(data.complanes,function(key,val){
+		key=key+1;
+	  $('#tableComplan').append("<tr>"+
+							   "<td >"+key+"</td>"
+							   +"<td id='ename'>"+val.name+"</td>"
+							   +"<td id='edescription'>"+val.description+"</td>"
+							   +"<td >"+'<img src="{{asset('uploads/complane_images')}}/'+val.image+'" width="100" height="100" data-photo='+val.image+' id="eimage">'+
 							   "</td>"
 							   +"<td>"
-							   +"<button class='btn btn-warning' id='btnShow' data-id="+data.store.id+" data-toggle='modal' data-target='#showModal'>عرض</button>"+
+							   +"<button class='btn btn-warning' id='btnShow' data-id="+val.id+" data-toggle='modal' data-target='#showModal'>عرض</button>"+
 							   "</td>"
 							   +"<td>"
-							   +"<button class='btn btn-info' id='btnEdit' data-id="+data.store.id+" data-toggle='modal' data-target='#EditModal'>تعديل</button>"+
+							   +"<button class='btn btn-info' id='btnEdit' data-id="+val.id+" data-toggle='modal' data-target='#EditModal'>تعديل</button>"+
 							   "</td>"
 							   +"<td>"
-							   +"<button class='btn btn-danger' id='btnDelete' data-id="+data.store.id+">حذف</button>"+
+							   +"<button class='btn btn-danger' id='btnDelete' data-id="+val.id+">حذف</button>"+
 							   "</td>"+
 							   "</td>");
-		}
-		})
 	});
-
-*/
+	
+	});
+});
+	
 
 $(document).on('click','#btnDelete',function(){
 	id=$(this).data('id');

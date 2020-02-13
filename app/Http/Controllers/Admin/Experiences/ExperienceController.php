@@ -25,6 +25,16 @@ class ExperienceController extends Controller
 		return  response()->json(['data'=>$experiences]);
 		
 	}
+	public function searchExper(Request $request)
+	{
+	if($request->ajax())
+		{
+		$data=Experience::where('name','like','%'. $request->search .'%')->orWhere('description','like','%'. $request->search .'%' )
+        ->firstOrFail();
+		$exper=Experience::where('id',$data->id)->get();
+		 return response()->json(['experience'=>$exper]);
+		}
+	}
 	public function show($id)
 	{
 		$data=Experience::where('id',$id)->firstOrFail();

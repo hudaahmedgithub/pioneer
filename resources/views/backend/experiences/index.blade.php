@@ -22,6 +22,12 @@
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-success" style="float:right">التجارب
 				</h6>
+				 <form class="form-inline search-container ml-auto my-2 my-lg-0" id="searchExper" >
+               
+                   <input class="form-control mr-sm-2 search-in" type="search" placeholder="Search" aria-label="Search" id="search" >
+                   <button class="btn btn-danger my-4 my-sm-0 search-btn" type="submit" style="margint-left:-200px">search</button>
+             
+       </form>   
 			<button class="btn btn-success"  data-toggle="modal" data-target="#addModal" style="float:left">
 			اضف تجربه
 			</button>
@@ -260,7 +266,7 @@ $('#formEdit').on('submit', function(e) {
 $('#formExperiences').on('submit', function(e) {
         e.preventDefault();
 	
-        let url         = "{{ url('/') }}/admin/experiences/store";
+        let url   = "{{ url('/') }}/admin/experiences/store";
         name=$('#nameExperiences').val();
 	    description=$('#descriptionExperiences').val();
 	   
@@ -297,6 +303,36 @@ $('#formExperiences').on('submit', function(e) {
 		}
 		})
 	});
+$('#searchExper').submit(function(e){
+	e.preventDefault();
+search=$('#search').val();
+console.log(search);
+let action  = "{{ url('/') }}/admin/experiences/searchExper";
+$.post(action,{search:search},function(data){
+	
+	$('#tableExper').html('');
+	$.each(data.experience,function(key,val){
+		key=key+1;
+	  $('#tableExper').append("<tr>"+
+							   "<td >"+key+"</td>"
+							   +"<td id='ename'>"+val.name+"</td>"
+							   +"<td id='edescription'>"+val.description+"</td>"
+							   +"<td >"+'<img src="{{asset('uploads/experience_images')}}/'+val.image+'" width="100" height="100" data-photo='+val.image+' id="eimage">'+
+							   "</td>"
+							   +"<td>"
+							   +"<button class='btn btn-warning' id='btnShow' data-id="+val.id+" data-toggle='modal' data-target='#showModal'>عرض</button>"+
+							   "</td>"
+							   +"<td>"
+							   +"<button class='btn btn-info' id='btnEdit' data-id="+val.id+" data-toggle='modal' data-target='#EditModal'>تعديل</button>"+
+							   "</td>"
+							   +"<td>"
+							   +"<button class='btn btn-danger' id='btnDelete' data-id="+val.id+">حذف</button>"+
+							   "</td>"+
+							   "</td>");
+	});
+	
+	});
+});
 
 $(document).on('click','#btnDelete',function(){
 	id=$(this).data('id');

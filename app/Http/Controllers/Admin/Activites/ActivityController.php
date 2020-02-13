@@ -29,6 +29,16 @@ class ActivityController extends Controller
 		return  response()->json(['data'=>$activites]);
 		
 	}
+	public function searchActive(Request $request)
+	{
+	if($request->ajax())
+		{
+		$data=Activity::where('name','like','%'. $request->search .'%')->orWhere('description','like','%'. $request->search .'%' )
+        ->firstOrFail();
+		$activities=Activity::where('id',$data->id)->get();
+		 return response()->json(['activities'=>$activities]);
+		}
+	}
 	public function show($id)
 	{
 		$data=Activity::where('id',$id)->firstOrFail();
